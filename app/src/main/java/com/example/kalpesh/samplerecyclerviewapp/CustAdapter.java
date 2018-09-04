@@ -1,5 +1,6 @@
 package com.example.kalpesh.samplerecyclerviewapp;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -15,7 +16,9 @@ public class CustAdapter extends RecyclerView.Adapter<CustAdapter.CustViewHolder
 
     private String data[];
     String imageurl;
-    CustAdapter(String[] data){
+    Context context ;
+    CustAdapter(String[] data,Context context){
+        this.context = context ;
         this.data = data ;
         //this.imageurl = imageurl ;
         Log.v("Data got -> ","construtur called");
@@ -35,12 +38,13 @@ public class CustAdapter extends RecyclerView.Adapter<CustAdapter.CustViewHolder
     public void onBindViewHolder(@NonNull CustViewHolder holder, int position) {
         String tite = data[position] ;
         holder.textView.setText(tite);
+        Glide.with(context).load("https://media1.ausbt.com.au/1040,588-5972de7185904975884b18b2dd799463-language-apps-920a.jpg").into(holder.imageView);
         //Glide.with(getApplicationContext).load(imageurl).into(holder.imageView);
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return 15;
     }
 
     public class CustViewHolder extends RecyclerView.ViewHolder {
